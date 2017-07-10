@@ -335,6 +335,9 @@ public class MainFrame extends java.awt.Frame implements Runnable, Console.Direc
         }
         setupres();
         MainFrame f = new MainFrame(null);
+
+        Maid.getInstance();
+
         if (Utils.getprefb("fullscreen", false))
             f.setfs();
         f.mt.start();
