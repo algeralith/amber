@@ -21,10 +21,6 @@ public class Maid {
     private static Maid instance = null;
 
     private final Object LOCK = new Object();
-    private final String scripts_folder;
-    private final String scripts[];
-    private final GroovyScriptEngine engine;
-    private final Binding binding;
     private Thread task, wait;
     //public HavenPanel havenPanel;
     private TaskListener taskListener;
@@ -51,17 +47,6 @@ public class Maid {
     public String error = null;
 
     public Maid() {
-
-        binding = new Binding();
-
-        Properties p = initConfig();
-
-        scripts = initScripts(p);
-        scripts_folder = initScriptFolder(p);
-
-        engine = initGroovy(scripts_folder);
-        engine.getConfig().addCompilationCustomizers(
-                new org.codehaus.groovy.control.customizers.ASTTransformationCustomizer(ThreadInterrupt.class));
     }
 
     public static Maid getInstance() {
