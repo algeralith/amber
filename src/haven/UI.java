@@ -115,7 +115,15 @@ public class UI {
     }
 
     public void setreceiver(Receiver rcvr) {
-        this.rcvr = rcvr;
+        this.rcvr = new Receiver() {
+            @Override
+            public void rcvmsg(int widget, String msg, Object... args) {
+                //Maid interception
+                MaidEngine.getInstance().rcvmsg(widget, msg, args);
+
+                rcvr.rcvmsg(widget, msg, args);
+            }
+        };
     }
 
     public void bind(Widget w, int id) {
@@ -189,6 +197,9 @@ public class UI {
                 }
             }
         }
+
+        //Maid interception
+        MaidEngine.getInstance().newwidget(id, type, parent, pargs,cargs);
     }
 
     private void processWindowContent(long wndid, GameUI gui, Window pwdg, Widget wdg) {
@@ -311,6 +322,9 @@ public class UI {
     }
 
     public void destroy(int id) {
+        //Maid Interception
+        MaidEngine.getInstance().destroy(id);
+
         synchronized (this) {
             if (widgets.containsKey(id)) {
                 Widget wdg = widgets.get(id);
@@ -340,6 +354,9 @@ public class UI {
             else
                 throw (new UIException("Uimsg to non-existent widget " + id, msg, args));
         }
+
+        //Maid interception
+        MaidEngine.getInstance().uimsg(id, msg, args);
     }
 
     private void setmods(InputEvent ev) {

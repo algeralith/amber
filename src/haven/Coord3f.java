@@ -175,4 +175,12 @@ public class Coord3f {
     public String toString() {
         return (String.format("(%f, %f, %f)", x, y, z));
     }
+
+    public Coord getCoord() {
+        return new Coord((int)this.x, (int)this.y);
+    }
+
+    public Coord2d getCoord2d() {
+        return new Coord2d((double)this.x, (double)this.y);
+    }
 }

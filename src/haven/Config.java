@@ -607,6 +607,12 @@ public class Config {
         }
     }
 
+    public static boolean debugmode = Utils.getprefb("havenPanel.debugmode", true);
+
+    public static boolean getEnableDebugMode() {
+        return debugmode;
+    }
+
     static {
         Console.setscmd("stats", (cons, args) -> dbtext = Utils.parsebool(args[1]));
         Console.setscmd("profile", (cons, args) -> {

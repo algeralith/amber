@@ -58,7 +58,7 @@ public class MapView extends PView implements DTarget, Console.Directory, PFList
     private Plob placing = null;
     private int[] visol = new int[32];
     private Grabber grab;
-    private Selector selection;
+    public Selector selection;
     private Coord3f camoff = new Coord3f(Coord3f.o);
     public double shake = 0.0;
     public static int plobgran = 8;
@@ -2124,7 +2124,7 @@ public class MapView extends PView implements DTarget, Console.Directory, PFList
         }
     }
 
-    private class Selector implements Grabber {
+    public class Selector implements Grabber {
         Coord sc;
         MCache.Overlay ol;
         UI.Grab mgrab;
